@@ -3,464 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Park Jeong-Hee | Front-End · AI Engineer</title>
+  <title>Park Jeong-Hee | Front-End / AI Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #0a0e1a;
-      --bg2: #111827;
-      --bg3: #1a2235;
-      --accent: #4f9eff;
-      --accent2: #7c3aed;
-      --green: #10b981;
-      --yellow: #f59e0b;
-      --red: #ef4444;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --border: rgba(255,255,255,0.08);
+      --bg: #0a0e1a; --bg2: #111827; --bg3: #1a2235;
+      --accent: #4f9eff; --accent2: #7c3aed;
+      --green: #10b981; --yellow: #f59e0b; --red: #ef4444;
+      --text: #f1f5f9; --muted: #94a3b8; --border: rgba(255,255,255,0.08);
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', 'Noto Sans KR', sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter','Noto Sans KR',sans-serif; line-height: 1.6; overflow-x: hidden; }
 
     /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(10,14,26,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; color: var(--accent); }
-    .nav-right { display: flex; align-items: center; gap: 2.5rem; }
-    .nav-role { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; color: var(--muted); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
+    nav { position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1rem 2.5rem; background:rgba(10,14,26,0.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-weight:800; font-size:1rem; letter-spacing:0.05em; color:var(--accent); }
+    .nav-right { display:flex; align-items:center; gap:2.5rem; }
+    .nav-role { font-size:0.75rem; font-weight:700; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
 
     /* SECTIONS */
-    section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+    section { padding:6rem 2.5rem; max-width:1100px; margin:0 auto; }
 
     /* HERO */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 100%;
-      padding: 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(79,158,255,0.12) 0%, transparent 60%),
-                  radial-gradient(ellipse at 20% 80%, rgba(124,58,237,0.1) 0%, transparent 50%);
-    }
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(79,158,255,0.12);
-      border: 1px solid rgba(79,158,255,0.3);
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      padding: 0.35rem 0.9rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-    }
-    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 1.5s infinite; }
-    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
-    .hero-name {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .hero-name-en {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.2em;
-      margin-bottom: 2rem;
-    }
-    .hero-role {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1.5rem;
-    }
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-    .hero-contacts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .hero-contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .hero-contact-item a { color: var(--accent); text-decoration: none; }
-    .hero-contact-item a:hover { text-decoration: underline; }
-    .hero-badge {
-      display: inline-block;
-      padding: 0.3rem 0.8rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      background: rgba(79,158,255,0.15);
-      color: var(--accent);
-      border: 1px solid rgba(79,158,255,0.2);
-    }
+    #hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; max-width:100%; padding:0; position:relative; overflow:hidden; }
+    .hero-inner { max-width:1100px; margin:0 auto; padding:0 2.5rem; width:100%; position:relative; z-index:2; }
+    .hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse at 60% 40%,rgba(79,158,255,0.12) 0%,transparent 60%), radial-gradient(ellipse at 20% 80%,rgba(124,58,237,0.1) 0%,transparent 50%); }
+    .hero-tag { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(79,158,255,0.12); border:1px solid rgba(79,158,255,0.3); color:var(--accent); font-size:0.78rem; font-weight:600; letter-spacing:0.1em; padding:0.35rem 0.9rem; border-radius:100px; margin-bottom:1.5rem; }
+    .hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation:blink 1.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.3;} }
+    .hero-name { font-size:clamp(3rem,8vw,6rem); font-weight:900; letter-spacing:-0.02em; line-height:1; margin-bottom:0.5rem; }
+    .hero-name-en { font-size:clamp(1rem,2.5vw,1.4rem); font-weight:400; color:var(--muted); letter-spacing:0.2em; margin-bottom:2rem; }
+    .hero-role-text { font-size:clamp(1.2rem,3vw,1.8rem); font-weight:700; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1.5rem; }
+    .hero-desc { font-size:1.05rem; color:var(--muted); max-width:520px; line-height:1.8; margin-bottom:2.5rem; }
+    .hero-contacts { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:3rem; }
+    .hero-contact-item { display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--muted); }
+    .hero-contact-item a { color:var(--accent); text-decoration:none; }
+    .hero-contact-item a:hover { text-decoration:underline; }
+    .hero-badge { display:inline-block; padding:0.3rem 0.8rem; border-radius:6px; font-size:0.75rem; font-weight:600; background:rgba(79,158,255,0.15); color:var(--accent); border:1px solid rgba(79,158,255,0.2); }
 
     /* ABOUT */
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 3rem;
-    }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .about-desc { font-size: 1rem; color: var(--muted); line-height: 1.9; margin-bottom: 1.5rem; }
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
-    .timeline-item:last-child { border-bottom: none; }
-    .timeline-date { font-size: 0.78rem; color: var(--muted); font-weight: 500; padding-top: 2px; }
-    .timeline-content-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
-    .timeline-content-sub { font-size: 0.82rem; color: var(--muted); }
-    .now-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      background: var(--green);
-      color: #fff;
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-    }
+    .section-label { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; color:var(--accent); text-transform:uppercase; margin-bottom:0.75rem; }
+    .section-title { font-size:clamp(1.8rem,4vw,2.5rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:3rem; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+    .about-desc { font-size:1rem; color:var(--muted); line-height:1.9; margin-bottom:1.5rem; }
+    .timeline { display:flex; flex-direction:column; }
+    .timeline-item { display:grid; grid-template-columns:140px 1fr; gap:1.5rem; padding:1.5rem 0; border-bottom:1px solid var(--border); }
+    .timeline-item:last-child { border-bottom:none; }
+    .timeline-date { font-size:0.78rem; color:var(--muted); font-weight:500; padding-top:2px; }
+    .timeline-content-title { font-weight:700; font-size:0.95rem; margin-bottom:0.2rem; }
+    .timeline-content-sub { font-size:0.82rem; color:var(--muted); }
+    .now-badge { display:inline-block; font-size:0.65rem; font-weight:700; letter-spacing:0.08em; background:var(--green); color:#fff; padding:0.15rem 0.5rem; border-radius:4px; margin-left:0.5rem; vertical-align:middle; }
 
     /* SKILLS */
-    #skills { background: var(--bg2); max-width: 100%; }
-    #skills > div { max-width: 1100px; margin: 0 auto; padding: 6rem 2.5rem; }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .skill-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.75rem;
-    }
-    .skill-card-title {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-    }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-tag {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-    }
+    #skills { background:var(--bg2); max-width:100%; }
+    #skills > div { max-width:1100px; margin:0 auto; padding:6rem 2.5rem; }
+    .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .skill-card { background:var(--bg3); border:1px solid var(--border); border-radius:16px; padding:1.75rem; }
+    .skill-card-title { font-size:0.72rem; font-weight:700; letter-spacing:0.12em; color:var(--accent); text-transform:uppercase; margin-bottom:1.2rem; }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:0.5rem; }
+    .skill-tag { background:rgba(255,255,255,0.05); border:1px solid var(--border); color:var(--text); font-size:0.8rem; font-weight:500; padding:0.35rem 0.75rem; border-radius:6px; }
 
-    /* PROJECTS INDEX */
-    .projects-index { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
-    .project-index-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: transform 0.2s, border-color 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .project-index-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-    .project-num {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: rgba(255,255,255,0.08);
-      margin-bottom: 0.75rem;
-    }
-    .project-index-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; }
-    .project-index-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
-    .project-index-period { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
-    .tech-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tech-chip {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      background: rgba(79,158,255,0.12);
-      color: var(--accent);
-      border: 1px solid rgba(79,158,255,0.2);
-    }
-    .tech-chip.purple { background: rgba(124,58,237,0.12); color: #a78bfa; border-color: rgba(124,58,237,0.2); }
-    .tech-chip.green { background: rgba(16,185,129,0.12); color: var(--green); border-color: rgba(16,185,129,0.2); }
+    /* PROJECTS */
+    .projects-index { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:1rem; }
+    .project-index-card { background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:2rem; transition:transform 0.2s,border-color 0.2s; text-decoration:none; color:inherit; display:block; }
+    .project-index-card:hover { transform:translateY(-4px); border-color:var(--accent); }
+    .project-num { font-size:2.5rem; font-weight:900; color:rgba(255,255,255,0.08); margin-bottom:0.75rem; }
+    .project-index-title { font-size:1.3rem; font-weight:800; margin-bottom:0.4rem; }
+    .project-index-sub { font-size:0.85rem; color:var(--muted); margin-bottom:1rem; line-height:1.6; }
+    .project-index-period { font-size:0.75rem; color:var(--muted); margin-bottom:0.75rem; }
+    .tech-chips { display:flex; flex-wrap:wrap; gap:0.4rem; }
+    .tech-chip { font-size:0.7rem; font-weight:600; padding:0.25rem 0.6rem; border-radius:4px; background:rgba(79,158,255,0.12); color:var(--accent); border:1px solid rgba(79,158,255,0.2); }
+    .tech-chip.purple { background:rgba(124,58,237,0.12); color:#a78bfa; border-color:rgba(124,58,237,0.2); }
+    .tech-chip.green { background:rgba(16,185,129,0.12); color:var(--green); border-color:rgba(16,185,129,0.2); }
 
     /* PROJECT DETAIL */
-    .project-section { border-top: 1px solid var(--border); padding-top: 6rem; }
-    .project-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: start;
-      margin-bottom: 3rem;
-    }
-    .project-number-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .project-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-    .project-tagline { font-size: 1rem; color: var(--muted); margin-bottom: 1rem; }
-    .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: var(--muted); }
-    .project-meta span::before { content: '· '; }
-    .project-meta span:first-child::before { content: ''; }
+    .project-section { border-top:1px solid var(--border); padding-top:6rem; }
+    .project-number-label { font-size:0.72rem; font-weight:700; letter-spacing:0.15em; color:var(--accent); text-transform:uppercase; margin-bottom:0.5rem; }
+    .project-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:900; letter-spacing:-0.03em; margin-bottom:0.5rem; }
+    .project-tagline { font-size:1rem; color:var(--muted); margin-bottom:0.5rem; }
+    .project-meta { display:flex; flex-wrap:wrap; gap:1rem; font-size:0.82rem; color:var(--muted); margin-top:0.5rem; }
+    .project-meta span::before { content:'· '; }
+    .project-meta span:first-child::before { content:''; }
 
     /* CONTRIBUTION */
-    .contrib-list { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.5rem; }
-    .contrib-tag {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.25rem 0.65rem;
-      border-radius: 4px;
-      background: rgba(245,158,11,0.12);
-      color: var(--yellow);
-      border: 1px solid rgba(245,158,11,0.25);
-    }
+    .contrib-wrap { margin-top:0.75rem; }
+    .contrib-label { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; margin-bottom:0.5rem; }
+    .contrib-list { display:flex; flex-wrap:wrap; gap:0.45rem; }
+    .contrib-tag { font-size:0.72rem; font-weight:600; padding:0.25rem 0.65rem; border-radius:4px; background:rgba(245,158,11,0.12); color:var(--yellow); border:1px solid rgba(245,158,11,0.25); }
 
-    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
-    .detail-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-    }
-    .detail-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; }
-
-    /* STACK TAGS */
-    .stack-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .stack-item {
-      font-size: 0.78rem;
-      font-weight: 500;
-      padding: 0.3rem 0.7rem;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
+    .detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2.5rem; }
+    .detail-card { background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:2rem; }
+    .detail-card-title { font-size:0.72rem; font-weight:700; letter-spacing:0.12em; color:var(--muted); text-transform:uppercase; margin-bottom:1rem; }
+    .stack-list { display:flex; flex-wrap:wrap; gap:0.5rem; }
+    .stack-item { font-size:0.78rem; font-weight:500; padding:0.3rem 0.7rem; border-radius:6px; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:var(--text); }
 
     /* PIPELINE */
-    .pipeline { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin-top: 1rem; }
-    .pipeline-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      flex: 1;
-      min-width: 80px;
-    }
-    .pipeline-dot {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; font-weight: 700; color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .pipeline-label { font-size: 0.72rem; color: var(--muted); }
-    .pipeline-arrow { color: var(--muted); font-size: 1rem; padding: 0 0.25rem; margin-bottom: 1.2rem; }
+    .pipeline { display:flex; align-items:center; flex-wrap:wrap; margin-top:1rem; }
+    .pipeline-step { display:flex; flex-direction:column; align-items:center; text-align:center; flex:1; min-width:80px; }
+    .pipeline-dot { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:#fff; margin-bottom:0.5rem; }
+    .pipeline-label { font-size:0.72rem; color:var(--muted); }
+    .pipeline-arrow { color:var(--muted); font-size:1rem; padding:0 0.25rem; margin-bottom:1.2rem; }
 
     /* METRICS */
-    .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .metric-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    .metric-value { font-size: 2.2rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
-    .metric-value.green { color: var(--green); }
-    .metric-value.yellow { color: var(--yellow); }
-    .metric-label { font-size: 0.78rem; color: var(--muted); }
-    .metric-sub { font-size: 0.72rem; color: rgba(148,163,184,0.6); margin-top: 0.2rem; }
+    .metrics-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+    .metric-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:1.5rem; text-align:center; }
+    .metric-value { font-size:2.2rem; font-weight:900; color:var(--accent); line-height:1; margin-bottom:0.3rem; }
+    .metric-value.green { color:var(--green); }
+    .metric-value.yellow { color:var(--yellow); }
+    .metric-label { font-size:0.78rem; color:var(--muted); }
+    .metric-sub { font-size:0.72rem; color:rgba(148,163,184,0.6); margin-top:0.2rem; }
 
     /* PROBLEM/SOLUTION */
-    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .problem-card {
-      border-radius: 12px;
-      padding: 1.5rem;
-      border: 1px solid var(--border);
-    }
-    .problem-card.problem { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.2); }
-    .problem-card.solution { background: rgba(16,185,129,0.06); border-color: rgba(16,185,129,0.2); }
-    .problem-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      margin-bottom: 0.75rem;
-    }
-    .problem-badge.p { background: rgba(239,68,68,0.2); color: var(--red); }
-    .problem-badge.s { background: rgba(16,185,129,0.2); color: var(--green); }
-    .problem-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
-    .problem-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
-    .stat-big { font-size: 1.8rem; font-weight: 900; margin: 0.5rem 0 0.25rem; }
-    .stat-big.red { color: var(--red); }
-    .stat-big.green { color: var(--green); }
+    .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .problem-card { border-radius:12px; padding:1.5rem; border:1px solid var(--border); }
+    .problem-card.problem { background:rgba(239,68,68,0.06); border-color:rgba(239,68,68,0.2); }
+    .problem-card.solution { background:rgba(16,185,129,0.06); border-color:rgba(16,185,129,0.2); }
+    .problem-badge { display:inline-block; font-size:0.65rem; font-weight:700; letter-spacing:0.08em; padding:0.2rem 0.6rem; border-radius:4px; margin-bottom:0.75rem; }
+    .problem-badge.p { background:rgba(239,68,68,0.2); color:var(--red); }
+    .problem-badge.s { background:rgba(16,185,129,0.2); color:var(--green); }
+    .problem-title { font-weight:700; font-size:0.95rem; margin-bottom:0.5rem; }
+    .problem-desc { font-size:0.83rem; color:var(--muted); line-height:1.7; }
+    .stat-big { font-size:1.8rem; font-weight:900; margin:0.5rem 0 0.25rem; }
+    .stat-big.red { color:var(--red); }
+    .stat-big.green { color:var(--green); }
 
     /* LESSONS */
-    .lesson-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
-    .lesson-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
-    .lesson-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--yellow); text-transform: uppercase; margin-bottom: 0.75rem; }
-    .lesson-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-
-    /* CONTACT */
-    #contact { text-align: center; }
-    .contact-name { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; margin-bottom: 0.5rem; }
-    .contact-role { font-size: 1rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 3rem; }
-    .contact-grid { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
-    .contact-item { text-align: center; }
-    .contact-item-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.4rem; }
-    .contact-item-value { font-size: 0.9rem; color: var(--text); }
-    .contact-item-value a { color: var(--text); text-decoration: none; }
-    .contact-item-value a:hover { color: var(--accent); }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.78rem;
-      color: rgba(148,163,184,0.4);
-      border-top: 1px solid var(--border);
-    }
+    .lesson-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:1rem; }
+    .lesson-card { background:var(--bg3); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
+    .lesson-label { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; color:var(--yellow); text-transform:uppercase; margin-bottom:0.75rem; }
+    .lesson-text { font-size:0.85rem; color:var(--muted); line-height:1.7; }
 
     /* FLOW STEPS */
-    .flow-steps { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
-    .flow-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-      padding: 0.5rem 0;
-    }
-    .flow-step-icon {
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      background: rgba(79,158,255,0.15);
-      color: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
+    .flow-steps { display:flex; flex-direction:column; gap:0.5rem; margin-top:1rem; }
+    .flow-step { display:flex; align-items:flex-start; gap:0.75rem; font-size:0.85rem; color:var(--muted); line-height:1.5; padding:0.5rem 0; }
+    .flow-step-icon { width:24px; height:24px; border-radius:50%; background:rgba(79,158,255,0.15); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:700; flex-shrink:0; margin-top:2px; }
 
-    /* LUMEN ARCH */
-    .arch-flow {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      overflow-x: auto;
-      padding: 1rem 0;
-    }
-    .arch-box {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-      text-align: center;
-      min-width: 110px;
-    }
-    .arch-box-title { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.3rem; }
-    .arch-box-sub { font-size: 0.68rem; color: var(--muted); line-height: 1.4; }
-    .arch-arrow { color: var(--muted); font-size: 1.2rem; padding: 0 0.5rem; flex-shrink: 0; }
+    /* ARCH */
+    .arch-flow { display:flex; align-items:center; overflow-x:auto; padding:1rem 0; }
+    .arch-box { background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; text-align:center; min-width:110px; }
+    .arch-box-title { font-size:0.72rem; font-weight:700; color:var(--accent); margin-bottom:0.3rem; }
+    .arch-box-sub { font-size:0.68rem; color:var(--muted); line-height:1.4; }
+    .arch-arrow { color:var(--muted); font-size:1.2rem; padding:0 0.5rem; flex-shrink:0; }
 
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1rem; }
-      .nav-role { display: none; }
-      section { padding: 4rem 1.5rem; }
-      .about-grid, .skills-grid, .projects-index, .detail-grid, .problem-grid, .lesson-grid, .metrics-grid { grid-template-columns: 1fr; }
-      .project-header { grid-template-columns: 1fr; }
-      .pipeline { flex-direction: column; align-items: flex-start; }
-      .pipeline-arrow { transform: rotate(90deg); }
-      .hero-contacts { flex-direction: column; }
-      .contact-grid { gap: 2rem; }
+    /* CONTACT */
+    #contact { text-align:center; border-top:1px solid var(--border); }
+    .contact-name { font-size:clamp(2.5rem,6vw,4rem); font-weight:900; margin-bottom:0.5rem; }
+    .contact-role-text { font-size:1rem; color:var(--muted); letter-spacing:0.15em; margin-bottom:3rem; }
+    .contact-grid { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; }
+    .contact-item { text-align:center; }
+    .contact-item-label { font-size:0.7rem; font-weight:700; letter-spacing:0.12em; color:var(--accent); text-transform:uppercase; margin-bottom:0.4rem; }
+    .contact-item-value { font-size:0.9rem; color:var(--text); }
+    .contact-item-value a { color:var(--text); text-decoration:none; }
+    .contact-item-value a:hover { color:var(--accent); }
+
+    footer { text-align:center; padding:2rem; font-size:0.78rem; color:rgba(148,163,184,0.4); border-top:1px solid var(--border); }
+
+    @media (max-width:768px) {
+      nav { padding:1rem 1.5rem; }
+      .nav-role { display:none; }
+      .nav-links { gap:1rem; }
+      section { padding:4rem 1.5rem; }
+      .about-grid,.skills-grid,.projects-index,.detail-grid,.problem-grid,.lesson-grid,.metrics-grid { grid-template-columns:1fr; }
+      .hero-contacts { flex-direction:column; }
+      .contact-grid { gap:2rem; }
     }
   </style>
 </head>
@@ -480,14 +189,15 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ① HERO (1페이지) -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
     <div class="hero-tag">SSAFY 14기 · Frontend Track · 2026</div>
     <h1 class="hero-name">박정희</h1>
     <p class="hero-name-en">PARK JEONG-HEE</p>
-    <p class="hero-role">Front-End / AI Engineer</p>
+    <p class="hero-role-text">Front-End / AI Engineer</p>
+    <!-- 수정된 문구 -->
     <p class="hero-desc">
       프론트엔드로 사용자 경험을 설계하고<br>
       AI로 서비스의 가능성을 확장합니다.
@@ -498,19 +208,21 @@
       <span class="hero-contact-item">📞 010-2240-7543</span>
     </div>
     <span class="hero-badge">✦ SSAFY 14기 · 삼성청년 SW아카데미</span>
+    <!-- EST. 2026 SEOUL 삭제됨 -->
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ② ABOUT (2페이지) -->
 <section id="about">
   <div class="section-label">About Me</div>
   <h2 class="section-title">자기소개 및 주요 이력</h2>
   <div class="about-grid">
     <div>
+      <!-- 수정된 문구: 프론트엔드 + AI 둘 다 강조 -->
       <p class="about-desc">
-        <strong style="color:var(--text)">프론트엔드와 AI를 함께 다루는 엔지니어.</strong><br><br>
+        <strong style="color:var(--text)">프론트엔드와 AI, 두 영역을 함께 다루는 엔지니어.</strong><br><br>
         React · Vue 기반 UI 설계부터 LiteRT 온디바이스 AI 추론까지,
-        사용자 경험과 기술적 깊이를 동시에 추구합니다.
+        화면의 사용자 경험과 AI의 기술적 깊이를 동시에 추구합니다.
       </p>
       <p class="about-desc">
         건축공학 전공의 시스템 사고를 바탕으로 서비스 전체 흐름을 설계하는 데 강점을 보유합니다.
@@ -560,13 +272,13 @@
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-card-title">Mobile &amp; AI</div>
+        <div class="skill-card-title">Mobile &amp; On-device AI</div>
         <div class="skill-tags">
           <span class="skill-tag">Kotlin</span>
           <span class="skill-tag">Jetpack Compose</span>
-          <span class="skill-tag">On-device AI</span>
           <span class="skill-tag">LiteRT (TFLite)</span>
           <span class="skill-tag">ONNX</span>
+          <span class="skill-tag">On-device AI</span>
         </div>
       </div>
       <div class="skill-card">
@@ -619,16 +331,16 @@
       <div class="tech-chips">
         <span class="tech-chip green">Android</span>
         <span class="tech-chip green">LiteRT</span>
-        <span class="tech-chip green">Kotlin</span>
+        <span class="tech-chip green">ONNX</span>
       </div>
     </a>
   </div>
 </section>
 
-<!-- PROJECT 01: MUNG-SHALL -->
+<!-- ④ PROJECT 01: MUNG-SHALL (4페이지) -->
 <section id="mung-shall" style="padding-top:0;">
   <div class="project-section">
-    <div class="project-header">
+    <div class="project-header" style="margin-bottom:2rem;">
       <div>
         <div class="project-number-label">Project 01 / 03 · 2026.01 → 2026.02</div>
         <h2 class="project-title">Mung-Shall</h2>
@@ -637,8 +349,9 @@
           <span>React · Spring Boot · FastAPI</span>
           <span>6인 팀 (Front 2 · Back 2 · AI&amp;Back 1 · Infra 1)</span>
         </div>
-        <div style="margin-top:0.75rem;">
-          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:0.5rem;">Contribution</div>
+        <!-- 수정된 Contribution -->
+        <div class="contrib-wrap">
+          <div class="contrib-label">Contribution</div>
           <div class="contrib-list">
             <span class="contrib-tag">와이어프레임 설계</span>
             <span class="contrib-tag">API 명세/연동</span>
@@ -648,7 +361,6 @@
       </div>
     </div>
 
-    <!-- Pipeline -->
     <div class="detail-card" style="margin-bottom:1.5rem;">
       <div class="detail-card-title">Adoption Pipeline</div>
       <div class="pipeline">
@@ -669,16 +381,11 @@
       <div class="detail-card">
         <div class="detail-card-title">Tech Stack</div>
         <div class="stack-list">
-          <span class="stack-item">React</span>
-          <span class="stack-item">TypeScript</span>
-          <span class="stack-item">Vite</span>
-          <span class="stack-item">Tailwind CSS 4</span>
-          <span class="stack-item">MUI 7</span>
-          <span class="stack-item">Zustand</span>
-          <span class="stack-item">React Hook Form</span>
-          <span class="stack-item">Zod</span>
-          <span class="stack-item">OpenVidu 2.30</span>
-          <span class="stack-item">Spring AI</span>
+          <span class="stack-item">React</span><span class="stack-item">TypeScript</span>
+          <span class="stack-item">Vite</span><span class="stack-item">Tailwind CSS 4</span>
+          <span class="stack-item">MUI 7</span><span class="stack-item">Zustand</span>
+          <span class="stack-item">React Hook Form</span><span class="stack-item">Zod</span>
+          <span class="stack-item">OpenVidu 2.30</span><span class="stack-item">Spring AI</span>
           <span class="stack-item">Redis</span>
         </div>
         <div style="margin-top:1.25rem;">
@@ -727,45 +434,23 @@
     </div>
 
     <div class="metrics-grid" style="margin-top:1.5rem;">
-      <div class="metric-card">
-        <div class="metric-value green">-92%</div>
-        <div class="metric-label">추천 API 응답 시간</div>
-        <div class="metric-sub">4.2s → 0.32s</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value green">-28pt</div>
-        <div class="metric-label">iOS Safari 첫 입장 실패율</div>
-        <div class="metric-sub">30% → 2%</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value yellow">7단계</div>
-        <div class="metric-label">사후관리 흐름 단일화</div>
-        <div class="metric-sub">3일 · 1·2·3개월 통합</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">1 Flow</div>
-        <div class="metric-label">전체 워크플로우 통합</div>
-        <div class="metric-sub">탐색 → 신청 → 심사 → 사후관리</div>
-      </div>
+      <div class="metric-card"><div class="metric-value green">-92%</div><div class="metric-label">추천 API 응답 시간</div><div class="metric-sub">4.2s → 0.32s</div></div>
+      <div class="metric-card"><div class="metric-value green">-28pt</div><div class="metric-label">iOS Safari 첫 입장 실패율</div><div class="metric-sub">30% → 2%</div></div>
+      <div class="metric-card"><div class="metric-value yellow">7단계</div><div class="metric-label">사후관리 흐름 단일화</div><div class="metric-sub">3일 · 1·2·3개월 통합</div></div>
+      <div class="metric-card"><div class="metric-value">1 Flow</div><div class="metric-label">전체 워크플로우 통합</div><div class="metric-sub">탐색 → 신청 → 심사 → 사후관리</div></div>
     </div>
 
     <div class="lesson-grid" style="margin-top:1.5rem;">
-      <div class="lesson-card">
-        <div class="lesson-label">Lesson Learned</div>
-        <div class="lesson-text">설문 UI를 한 페이지에 몰아두어 이탈률이 늘어났던 점. 위자드 방식으로 단계를 분할했다면 완료율이 개선되었을 것.</div>
-      </div>
-      <div class="lesson-card">
-        <div class="lesson-label">Key Insight</div>
-        <div class="lesson-text">보호소·입양자·관리자처럼 같은 데이터를 다르게 보는 UI에서는, 상태화 권한을 일찍 분리해야 복잡성이 줄어든다.</div>
-      </div>
+      <div class="lesson-card"><div class="lesson-label">Lesson Learned</div><div class="lesson-text">설문 UI를 한 페이지에 몰아두어 이탈률이 늘어났던 점. 위자드 방식으로 단계를 분할했다면 완료율이 개선되었을 것.</div></div>
+      <div class="lesson-card"><div class="lesson-label">Key Insight</div><div class="lesson-text">보호소·입양자·관리자처럼 같은 데이터를 다르게 보는 UI에서는, 상태화 권한을 일찍 분리해야 복잡성이 줄어든다.</div></div>
     </div>
   </div>
 </section>
 
-<!-- PROJECT 02: Z맘대로 -->
+<!-- ⑧ PROJECT 02: Z맘대로 (8페이지) -->
 <section id="z-mam" style="padding-top:0;">
   <div class="project-section">
-    <div class="project-header">
+    <div class="project-header" style="margin-bottom:2rem;">
       <div>
         <div class="project-number-label">Project 02 / 03 · 2026.02 → 2026.03</div>
         <h2 class="project-title">Z맘대로</h2>
@@ -775,8 +460,9 @@
           <span>React · Spring Boot</span>
           <span>팀 6인</span>
         </div>
-        <div style="margin-top:0.75rem;">
-          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:0.5rem;">Contribution</div>
+        <!-- 수정된 Contribution: % 제거 -->
+        <div class="contrib-wrap">
+          <div class="contrib-label">Contribution</div>
           <div class="contrib-list">
             <span class="contrib-tag">와이어/프로토타입</span>
             <span class="contrib-tag">주요 화면 React 구현</span>
@@ -790,16 +476,11 @@
       <div class="detail-card">
         <div class="detail-card-title">Tech Stack</div>
         <div class="stack-list">
-          <span class="stack-item">React 19</span>
-          <span class="stack-item">TypeScript 5.9</span>
-          <span class="stack-item">Vite 7</span>
-          <span class="stack-item">Zustand 5</span>
-          <span class="stack-item">Framer Motion</span>
-          <span class="stack-item">Lightweight Charts</span>
-          <span class="stack-item">STOMP-JS</span>
-          <span class="stack-item">PWA</span>
-          <span class="stack-item">FCM</span>
-          <span class="stack-item">Tailwind CSS</span>
+          <span class="stack-item">React 19</span><span class="stack-item">TypeScript 5.9</span>
+          <span class="stack-item">Vite 7</span><span class="stack-item">Zustand 5</span>
+          <span class="stack-item">Framer Motion</span><span class="stack-item">Lightweight Charts</span>
+          <span class="stack-item">STOMP-JS</span><span class="stack-item">PWA</span>
+          <span class="stack-item">FCM</span><span class="stack-item">Tailwind CSS</span>
         </div>
       </div>
       <div class="detail-card">
@@ -818,28 +499,28 @@
         <div class="problem-card problem">
           <span class="problem-badge p">PROBLEM 01</span>
           <div class="problem-title">숏폼 피드 메모리 폭증</div>
-          <div class="problem-desc">무한 스크롤에서 video 요소가 누적되며 디코딩 버퍼가 쌓여 평균 480MB, CPU 18%</div>
+          <div class="problem-desc">무한 스크롤에서 video 요소 누적 → 디코딩 버퍼 480MB, CPU 18%</div>
           <div class="stat-big red">480MB</div>
           <div style="font-size:0.72rem;color:var(--muted)">평균 메모리 (개선 전)</div>
         </div>
         <div class="problem-card solution">
           <span class="problem-badge s">SOLVED</span>
           <div class="problem-title">윈도잉 + Video Pool 재사용</div>
-          <div class="problem-desc">가시 영역 내 슬라이드만 렌더링, video 풀 3개 순환 재사용으로 디코딩 버퍼 누적 차단</div>
+          <div class="problem-desc">가시 영역만 렌더링, video 풀 3개 순환 재사용으로 버퍼 누적 차단</div>
           <div class="stat-big green">180MB</div>
           <div style="font-size:0.72rem;color:var(--green)">-62.5% · CPU 18% → 1.5%</div>
         </div>
         <div class="problem-card problem">
           <span class="problem-badge p">PROBLEM 02</span>
           <div class="problem-title">그룹 투표 UI 반영 지연</div>
-          <div class="problem-desc">REST polling으로 그룹 투표 결과 조회 시 3~5초 UI 반영 지연, 실시간 경험 훼손</div>
+          <div class="problem-desc">REST polling 방식으로 3~5초 지연 발생, 실시간 경험 훼손</div>
           <div class="stat-big red">3–5s</div>
           <div style="font-size:0.72rem;color:var(--muted)">UI 반영 지연 (개선 전)</div>
         </div>
         <div class="problem-card solution">
           <span class="problem-badge s">SOLVED</span>
           <div class="problem-title">STOMP WebSocket + 낙관적 업데이트</div>
-          <div class="problem-desc">REST polling을 STOMP WebSocket 푸시로 전환, 낙관적 업데이트로 동시성 충돌 없이 즉각 반영</div>
+          <div class="problem-desc">REST polling → STOMP WebSocket 전환, 낙관적 업데이트로 즉각 반영</div>
           <div class="stat-big green">&lt;300ms</div>
           <div style="font-size:0.72rem;color:var(--green)">×10 개선</div>
         </div>
@@ -847,32 +528,18 @@
     </div>
 
     <div class="metrics-grid" style="margin-top:1.5rem;">
-      <div class="metric-card">
-        <div class="metric-value green">-62.5%</div>
-        <div class="metric-label">숏폼 피드 평균 메모리</div>
-        <div class="metric-sub">480MB → 180MB</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value green">-16.5pt</div>
-        <div class="metric-label">CPU 점유율</div>
-        <div class="metric-sub">18% → 1.5%</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value yellow">×10</div>
-        <div class="metric-label">그룹 투표 UI 반영 속도</div>
-        <div class="metric-sub">3-5s → 300ms 미만</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value" style="font-size:1.1rem;color:var(--muted);line-height:1.5;">"렌더링 비용과 동기화 모델의 선택이 사용자 경험의 질을 결정한다."</div>
-      </div>
+      <div class="metric-card"><div class="metric-value green">-62.5%</div><div class="metric-label">숏폼 피드 평균 메모리</div><div class="metric-sub">480MB → 180MB</div></div>
+      <div class="metric-card"><div class="metric-value green">-16.5pt</div><div class="metric-label">CPU 점유율</div><div class="metric-sub">18% → 1.5%</div></div>
+      <div class="metric-card"><div class="metric-value yellow">×10</div><div class="metric-label">그룹 투표 UI 반영 속도</div><div class="metric-sub">3-5s → 300ms 미만</div></div>
+      <div class="metric-card"><div class="metric-value" style="font-size:0.95rem;color:var(--muted);line-height:1.6;">"렌더링 비용과 동기화 모델의 선택이 사용자 경험의 질을 결정한다."</div></div>
     </div>
   </div>
 </section>
 
-<!-- PROJECT 03: LUMEN -->
+<!-- ⑫ PROJECT 03: LUMEN (12페이지) -->
 <section id="lumen" style="padding-top:0;">
   <div class="project-section">
-    <div class="project-header">
+    <div class="project-header" style="margin-bottom:2rem;">
       <div>
         <div class="project-number-label">Project 03 / 03 · 2026.04 → 2026.05</div>
         <h2 class="project-title">L U M E N</h2>
@@ -882,8 +549,9 @@
           <span>6명 팀 (Front 2, Back 2, AI 1, Infra 1)</span>
           <span>Role: On-device AI Engineer</span>
         </div>
-        <div style="margin-top:0.75rem;">
-          <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:0.5rem;">Contribution</div>
+        <!-- 수정 + 추가된 Contribution -->
+        <div class="contrib-wrap">
+          <div class="contrib-label">Contribution</div>
           <div class="contrib-list">
             <span class="contrib-tag">YOLO/SegFormer/LiteRT 통합</span>
             <span class="contrib-tag">파이프라인 설계</span>
@@ -894,39 +562,20 @@
       </div>
     </div>
 
-    <!-- Architecture Flow -->
     <div class="detail-card" style="margin-bottom:1.5rem;">
       <div class="detail-card-title">On-device AI Architecture</div>
       <div class="arch-flow">
-        <div class="arch-box">
-          <div class="arch-box-title">UVC Camera</div>
-          <div class="arch-box-sub">USB 외부 카메라</div>
-        </div>
+        <div class="arch-box"><div class="arch-box-title">UVC Camera</div><div class="arch-box-sub">USB 외부 카메라</div></div>
         <span class="arch-arrow">→</span>
-        <div class="arch-box">
-          <div class="arch-box-title">Android App</div>
-          <div class="arch-box-sub">실시간 프레임 수집</div>
-        </div>
+        <div class="arch-box"><div class="arch-box-title">Android App</div><div class="arch-box-sub">실시간 프레임 수집</div></div>
         <span class="arch-arrow">→</span>
-        <div class="arch-box" style="border-color:rgba(79,158,255,0.4);background:rgba(79,158,255,0.08);">
-          <div class="arch-box-title">LiteRT Engine</div>
-          <div class="arch-box-sub">온디바이스 · Network 0ms</div>
-        </div>
+        <div class="arch-box" style="border-color:rgba(79,158,255,0.4);background:rgba(79,158,255,0.08);"><div class="arch-box-title">LiteRT Engine</div><div class="arch-box-sub">온디바이스 · 0ms</div></div>
         <span class="arch-arrow">→</span>
-        <div class="arch-box">
-          <div class="arch-box-title">SegFormer + YOLO</div>
-          <div class="arch-box-sub">세그멘테이션 · 신호 감지</div>
-        </div>
+        <div class="arch-box"><div class="arch-box-title">SegFormer + YOLO</div><div class="arch-box-sub">세그멘테이션 · 신호 감지</div></div>
         <span class="arch-arrow">→</span>
-        <div class="arch-box">
-          <div class="arch-box-title">Result Layer</div>
-          <div class="arch-box-sub">위험/방향 결과</div>
-        </div>
+        <div class="arch-box"><div class="arch-box-title">Result Layer</div><div class="arch-box-sub">위험/방향 결과</div></div>
         <span class="arch-arrow">→</span>
-        <div class="arch-box" style="border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.08);">
-          <div class="arch-box-title">Wear OS Haptic</div>
-          <div class="arch-box-sub">햅틱 패턴 피드백</div>
-        </div>
+        <div class="arch-box" style="border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.08);"><div class="arch-box-title">Wear OS Haptic</div><div class="arch-box-sub">햅틱 패턴 피드백</div></div>
       </div>
     </div>
 
@@ -934,9 +583,9 @@
       <div class="detail-card">
         <div class="detail-card-title">온디바이스 AI 추론</div>
         <div class="flow-steps">
-          <div class="flow-step"><span class="flow-step-icon">⚡</span>LiteRT(TFLite)로 SegFormer + YOLO 모델을 디바이스 내 실행</div>
+          <div class="flow-step"><span class="flow-step-icon">⚡</span>YOLO + SegFormer 모델을 LiteRT로 디바이스 내 실행</div>
+          <div class="flow-step"><span class="flow-step-icon">⚡</span>ONNX 포맷 전환으로 모델 호환성 및 추론 파이프라인 최적화</div>
           <div class="flow-step"><span class="flow-step-icon">⚡</span>네트워크 연결 없이 보행 가능 영역 실시간 세그멘테이션</div>
-          <div class="flow-step"><span class="flow-step-icon">⚡</span>ONNX 포맷 전환으로 모델 호환성 및 추론 최적화</div>
           <div class="flow-step"><span class="flow-step-icon">⚡</span>Network Latency: 0ms</div>
         </div>
         <div class="detail-card-title" style="margin-top:1.25rem;">Wear OS 햅틱 연동</div>
@@ -948,21 +597,9 @@
       </div>
       <div>
         <div class="metrics-grid">
-          <div class="metric-card">
-            <div class="metric-value green">0ms</div>
-            <div class="metric-label">네트워크 레이턴시</div>
-            <div class="metric-sub">온디바이스 추론으로 달성</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value yellow">2채널</div>
-            <div class="metric-label">멀티채널 피드백</div>
-            <div class="metric-sub">시각 + 촉각 (Wear OS 햅틱)</div>
-          </div>
-          <div class="metric-card" style="grid-column:span 2;">
-            <div class="metric-value" style="font-size:3rem;color:var(--accent)">∞</div>
-            <div class="metric-label">실시간 위험 감지</div>
-            <div class="metric-sub">Wear OS + Android 연동</div>
-          </div>
+          <div class="metric-card"><div class="metric-value green">0ms</div><div class="metric-label">네트워크 레이턴시</div><div class="metric-sub">온디바이스 추론으로 달성</div></div>
+          <div class="metric-card"><div class="metric-value yellow">2채널</div><div class="metric-label">멀티채널 피드백</div><div class="metric-sub">시각 + 촉각 (Wear OS)</div></div>
+          <div class="metric-card" style="grid-column:span 2;"><div class="metric-value" style="font-size:3rem;color:var(--accent)">∞</div><div class="metric-label">실시간 위험 감지</div><div class="metric-sub">Wear OS + Android 연동</div></div>
         </div>
       </div>
     </div>
@@ -985,10 +622,10 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" style="border-top:1px solid var(--border);text-align:center;">
+<section id="contact">
   <div class="section-label" style="text-align:center;">Thank You · Open to Collaborate</div>
   <h2 class="contact-name">박정희</h2>
-  <p class="contact-role">[ FRONT-END / AI ENGINEER ] · SSAFY 14기 · 2026 · Seoul</p>
+  <p class="contact-role-text">[ FRONT-END / AI ENGINEER ] · SSAFY 14기 · 2026 · Seoul</p>
   <p style="font-size:1rem;color:var(--muted);margin-bottom:3rem;">함께 만들고 싶은 서비스가 있다면, 언제든지 연락주세요.</p>
   <div class="contact-grid">
     <div class="contact-item">
