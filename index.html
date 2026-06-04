@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Park Jeong-Hee | Front-End · AI Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0e1a;
+      --bg2: #111827;
+      --bg3: #1a2235;
+      --accent: #4f9eff;
+      --accent2: #7c3aed;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,14,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* SECTIONS */
+    section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 100%;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(79,158,255,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(124,58,237,0.1) 0%, transparent 50%);
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(79,158,255,0.12);
+      border: 1px solid rgba(79,158,255,0.3);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+    .hero-name {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name-en {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      margin-bottom: 2rem;
+    }
+    .hero-role {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .hero-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .hero-contact-item a { color: var(--accent); text-decoration: none; }
+    .hero-contact-item a:hover { text-decoration: underline; }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(79,158,255,0.15);
+      color: var(--accent);
+      border: 1px solid rgba(79,158,255,0.2);
+    }
+
+    /* ABOUT */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-desc { font-size: 1rem; color: var(--muted); line-height: 1.9; margin-bottom: 1.5rem; }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date { font-size: 0.78rem; color: var(--muted); font-weight: 500; padding-top: 2px; }
+    .timeline-content-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .timeline-content-sub { font-size: 0.82rem; color: var(--muted); }
+    .now-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: var(--green);
+      color: #fff;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* SKILLS */
+    #skills { background: var(--bg2); max-width: 100%; }
+    #skills > div { max-width: 1100px; margin: 0 auto; padding: 6rem 2.5rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .skill-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+    .skill-card-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+    }
+
+    /* PROJECTS INDEX */
+    .projects-index { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1rem; }
+    .project-index-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .project-index-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .project-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.08);
+      margin-bottom: 0.75rem;
+    }
+    .project-index-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .project-index-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+    .project-index-period { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .tech-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tech-chip {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(79,158,255,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(79,158,255,0.2);
+    }
+    .tech-chip.purple { background: rgba(124,58,237,0.12); color: #a78bfa; border-color: rgba(124,58,237,0.2); }
+    .tech-chip.green { background: rgba(16,185,129,0.12); color: var(--green); border-color: rgba(16,185,129,0.2); }
+
+    /* PROJECT DETAIL */
+    .project-section { border-top: 1px solid var(--border); padding-top: 6rem; }
+    .project-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+    .project-number-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .project-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .project-tagline { font-size: 1rem; color: var(--muted); margin-bottom: 1rem; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: var(--muted); }
+    .project-meta span::before { content: '· '; }
+    .project-meta span:first-child::before { content: ''; }
+
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+    .detail-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    .detail-card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; }
+
+    /* STACK TAGS */
+    .stack-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .stack-item {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    /* PIPELINE */
+    .pipeline { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin-top: 1rem; }
+    .pipeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
+    }
+    .pipeline-dot {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .pipeline-label { font-size: 0.72rem; color: var(--muted); }
+    .pipeline-arrow { color: var(--muted); font-size: 1rem; padding: 0 0.25rem; margin-bottom: 1.2rem; }
+
+    /* METRICS */
+    .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .metric-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .metric-value { font-size: 2.2rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; }
+    .metric-value.green { color: var(--green); }
+    .metric-value.yellow { color: var(--yellow); }
+    .metric-label { font-size: 0.78rem; color: var(--muted); }
+    .metric-sub { font-size: 0.72rem; color: rgba(148,163,184,0.6); margin-top: 0.2rem; }
+
+    /* PROBLEM/SOLUTION */
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .problem-card {
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .problem-card.problem { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.2); }
+    .problem-card.solution { background: rgba(16,185,129,0.06); border-color: rgba(16,185,129,0.2); }
+    .problem-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .problem-badge.p { background: rgba(239,68,68,0.2); color: var(--red); }
+    .problem-badge.s { background: rgba(16,185,129,0.2); color: var(--green); }
+    .problem-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .problem-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+    .stat-big { font-size: 1.8rem; font-weight: 900; margin: 0.5rem 0 0.25rem; }
+    .stat-big.red { color: var(--red); }
+    .stat-big.green { color: var(--green); }
+
+    /* LESSONS */
+    .lesson-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+    .lesson-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .lesson-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: var(--yellow); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .lesson-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    /* CONTACT */
+    #contact { text-align: center; }
+    .contact-name { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; margin-bottom: 0.5rem; }
+    .contact-role { font-size: 1rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 3rem; }
+    .contact-grid { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+    .contact-item { text-align: center; }
+    .contact-item-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.4rem; }
+    .contact-item-value { font-size: 0.9rem; color: var(--text); }
+    .contact-item-value a { color: var(--text); text-decoration: none; }
+    .contact-item-value a:hover { color: var(--accent); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      color: rgba(148,163,184,0.4);
+      border-top: 1px solid var(--border);
+    }
+
+    /* FLOW STEPS */
+    .flow-steps { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding: 0.5rem 0;
+    }
+    .flow-step-icon {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: rgba(79,158,255,0.15);
+      color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* LUMEN ARCH */
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+    .arch-box {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+      min-width: 110px;
+    }
+    .arch-box-title { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.3rem; }
+    .arch-box-sub { font-size: 0.68rem; color: var(--muted); line-height: 1.4; }
+    .arch-arrow { color: var(--muted); font-size: 1.2rem; padding: 0 0.5rem; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .skills-grid, .projects-index, .detail-grid, .problem-grid, .lesson-grid, .metrics-grid { grid-template-columns: 1fr; }
+      .project-header { grid-template-columns: 1fr; }
+      .pipeline { flex-direction: column; align-items: flex-start; }
+      .pipeline-arrow { transform: rotate(90deg); }
+      .hero-contacts { flex-direction: column; }
+      .contact-grid { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PJH</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">SSAFY 14기 · Frontend Track · 2026</div>
+    <h1 class="hero-name">박정희</h1>
+    <p class="hero-name-en">PARK JEONG-HEE</p>
+    <p class="hero-role">Front-End &amp; AI Engineer</p>
+    <p class="hero-desc">
+      프론트엔드로 사용자 경험을 설계하고<br>
+      AI로 서비스의 가능성을 확장합니다.
+    </p>
+    <div class="hero-contacts">
+      <span class="hero-contact-item">📧 <a href="mailto:naskc5533@naver.com">naskc5533@naver.com</a></span>
+      <span class="hero-contact-item">🐱 <a href="https://github.com/ParkJeonghHee" target="_blank">github.com/ParkJeonghHee</a></span>
+      <span class="hero-contact-item">📞 010-2240-7543</span>
+    </div>
+    <span class="hero-badge">✦ SSAFY 14기 · 삼성청년 SW아카데미</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">자기소개 및 주요 이력</h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-desc">
+        <strong style="color:var(--text)">자기 친화적인 경험을 설계하는 프론트엔드 엔지니어.</strong><br><br>
+        복잡한 도메인을 상태와 흐름으로 다루며, 화면 너머의 흐름까지 함께 만드는 일을 좋아합니다.
+      </p>
+      <p class="about-desc">
+        건축공학 전공의 시스템 사고를 바탕으로 서비스 전체 흐름을 설계하는 데 강점을 보유합니다.
+      </p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2018.03 — 2024.02</div>
+        <div>
+          <div class="timeline-content-title">경희대학교</div>
+          <div class="timeline-content-sub">건축공학과 졸업</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2024.01 — 2025.03</div>
+        <div>
+          <div class="timeline-content-title">효성중공업</div>
+          <div class="timeline-content-sub">건축시공관리</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025.07 — 2026.06</div>
+        <div>
+          <div class="timeline-content-title">삼성청년 SW아카데미<span class="now-badge">NOW</span></div>
+          <div class="timeline-content-sub">SSAFY 14기 · Frontend Track</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="padding:0;">
+  <div>
+    <div class="section-label">Skills &amp; Expertise</div>
+    <h2 class="section-title">핵심 기술 스택</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Frameworks &amp; Libraries</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Vue.js</span>
+          <span class="skill-tag">Zustand</span>
+          <span class="skill-tag">Vuex</span>
+          <span class="skill-tag">React Hook Form</span>
+          <span class="skill-tag">Framer Motion</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Mobile &amp; AI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Jetpack Compose</span>
+          <span class="skill-tag">On-device AI</span>
+          <span class="skill-tag">LiteRT (TFLite)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Styling &amp; Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Tailwind CSS</span>
+          <span class="skill-tag">MUI</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Vite</span>
+          <span class="skill-tag">PWA</span>
+          <span class="skill-tag">TypeScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS INDEX -->
+<section id="projects">
+  <div class="section-label">03 Projects · Jan → May 2026</div>
+  <h2 class="section-title">프로젝트</h2>
+  <div class="projects-index">
+    <a class="project-index-card" href="#mung-shall">
+      <div class="project-num">01</div>
+      <div class="project-index-title">Mung-Shall</div>
+      <div class="project-index-sub">유기견 입양을 하나의 흐름으로.<br>입양 전·중·후를 끊김 없이 잇는 통합 플랫폼</div>
+      <div class="project-index-period">2026.01 – 02 · 6인</div>
+      <div class="tech-chips">
+        <span class="tech-chip">React</span>
+        <span class="tech-chip purple">Spring Boot</span>
+        <span class="tech-chip green">FastAPI</span>
+      </div>
+    </a>
+    <a class="project-index-card" href="#z-mam">
+      <div class="project-num">02</div>
+      <div class="project-index-title">Z맘대로</div>
+      <div class="project-index-sub">보고, 따라하고, 함께 투자하다.<br>숏폼 + AI 분석 + 그룹 공동투자 모바일 PWA</div>
+      <div class="project-index-period">2026.02 – 03 · 6인</div>
+      <div class="tech-chips">
+        <span class="tech-chip">React</span>
+        <span class="tech-chip purple">Spring Boot</span>
+        <span class="tech-chip">PWA</span>
+      </div>
+    </a>
+    <a class="project-index-card" href="#lumen">
+      <div class="project-num">03</div>
+      <div class="project-index-title">Lumen</div>
+      <div class="project-index-sub">빛으로 길을 여는 안전 보행 보조 서비스.<br>온디바이스 AI로 시각장애인 보행 안전 판단</div>
+      <div class="project-index-period">2026.04 – 05 · 6인</div>
+      <div class="tech-chips">
+        <span class="tech-chip green">Android</span>
+        <span class="tech-chip green">LiteRT</span>
+        <span class="tech-chip green">Kotlin</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PROJECT 01: MUNG-SHALL -->
+<section id="mung-shall" style="padding-top:0;">
+  <div class="project-section">
+    <div class="project-header">
+      <div>
+        <div class="project-number-label">Project 01 / 03 · 2026.01 → 2026.02</div>
+        <h2 class="project-title">Mung-Shall</h2>
+        <p class="project-tagline">유기견 입양을 하나의 흐름으로.</p>
+        <div class="project-meta">
+          <span>React · Spring Boot · FastAPI</span>
+          <span>6인 팀 (Front 2 · Back 2 · AI&amp;Back 1 · Infra 1)</span>
+          <span>기여: 화면 전반 50% · 디자인 시스템 50% · OpenVidu 40%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pipeline -->
+    <div class="detail-card" style="margin-bottom:1.5rem;">
+      <div class="detail-card-title">Adoption Pipeline</div>
+      <div class="pipeline">
+        <div class="pipeline-step"><div class="pipeline-dot">1</div><div class="pipeline-label">탐색</div></div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step"><div class="pipeline-dot">2</div><div class="pipeline-label">신청</div></div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step"><div class="pipeline-dot">3</div><div class="pipeline-label">심사</div></div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step"><div class="pipeline-dot">4</div><div class="pipeline-label">상담</div></div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-step"><div class="pipeline-dot">5</div><div class="pipeline-label">사후관리</div></div>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:1rem;">보호소와 입양자가 같은 상태를 실시간으로 공유하는 통합 워크플로우</p>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-title">Tech Stack</div>
+        <div class="stack-list">
+          <span class="stack-item">React</span>
+          <span class="stack-item">TypeScript</span>
+          <span class="stack-item">Vite</span>
+          <span class="stack-item">Tailwind CSS 4</span>
+          <span class="stack-item">MUI 7</span>
+          <span class="stack-item">Zustand</span>
+          <span class="stack-item">React Hook Form</span>
+          <span class="stack-item">Zod</span>
+          <span class="stack-item">OpenVidu 2.30</span>
+          <span class="stack-item">Spring AI</span>
+          <span class="stack-item">Redis</span>
+        </div>
+        <div style="margin-top:1.25rem;">
+          <div class="detail-card-title">입양 단계 흐름</div>
+          <div class="flow-steps">
+            <div class="flow-step"><span class="flow-step-icon">✓</span>ADOPTION_STEP_INSTANCE 상태에 따라 카드 UI 동적 변경</div>
+            <div class="flow-step"><span class="flow-step-icon">✓</span>새로고침·탭 이동에도 진행 상태 유지 (Zustand store)</div>
+            <div class="flow-step"><span class="flow-step-icon">✓</span>보호소 / 입양자 권한 분리, 세션 생성·참가 처리</div>
+            <div class="flow-step"><span class="flow-step-icon">✓</span>카메라·마이크 실패 및 네트워크 끊김 재연결 UX 보강</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Problem 01 -->
+        <div style="margin-bottom:1rem;">
+          <div class="detail-card-title" style="margin-bottom:0.75rem;">Problem &amp; Solved</div>
+          <div class="problem-grid">
+            <div class="problem-card problem">
+              <span class="problem-badge p">PROBLEM 01</span>
+              <div class="problem-title">Cold Start 지연</div>
+              <div class="problem-desc">추천 API 첫 응답이 너무 느렸다</div>
+              <div class="stat-big red">4,200ms</div>
+              <div style="font-size:0.72rem;color:var(--muted)">P95 응답 시간 (개선 전)</div>
+            </div>
+            <div class="problem-card solution">
+              <span class="problem-badge s">SOLVED</span>
+              <div class="problem-title">SHA-256 캐시 키 · Redis TTL 24h</div>
+              <div class="problem-desc">설문 응답 → SHA-256 키 → Redis 조회 → Miss 시 Spring AI 호출</div>
+              <div class="stat-big green">320ms</div>
+              <div style="font-size:0.72rem;color:var(--green)">-92.4% 개선</div>
+            </div>
+            <div class="problem-card problem">
+              <span class="problem-badge p">PROBLEM 02</span>
+              <div class="problem-title">iOS Safari 화상 상담 진입 실패</div>
+              <div class="problem-desc">첫 입장 실패율이 지나치게 높았다</div>
+              <div class="stat-big red">30%</div>
+              <div style="font-size:0.72rem;color:var(--muted)">첫 입장 실패율 (개선 전)</div>
+            </div>
+            <div class="problem-card solution">
+              <span class="problem-badge s">SOLVED</span>
+              <div class="problem-title">getUserMedia 선행 호출 · 트랙 재사용</div>
+              <div class="problem-desc">"입장" 클릭 직후 getUserMedia 선행 호출 → 같은 트랙 publish 재사용</div>
+              <div class="stat-big green">2%</div>
+              <div style="font-size:0.72rem;color:var(--green)">-28pt 개선</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outcomes -->
+    <div class="metrics-grid" style="margin-top:1.5rem;">
+      <div class="metric-card">
+        <div class="metric-value green">-92%</div>
+        <div class="metric-label">추천 API 응답 시간</div>
+        <div class="metric-sub">4.2s → 0.32s</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value green">-28pt</div>
+        <div class="metric-label">iOS Safari 첫 입장 실패율</div>
+        <div class="metric-sub">30% → 2%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value yellow">7단계</div>
+        <div class="metric-label">사후관리 흐름 단일화</div>
+        <div class="metric-sub">3일 · 1·2·3개월 통합</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">1 Flow</div>
+        <div class="metric-label">전체 워크플로우 통합</div>
+        <div class="metric-sub">탐색 → 신청 → 심사 → 사후관리</div>
+      </div>
+    </div>
+
+    <div class="lesson-grid" style="margin-top:1.5rem;">
+      <div class="lesson-card">
+        <div class="lesson-label">Lesson Learned</div>
+        <div class="lesson-text">설문 UI를 한 페이지에 몰아두어 이탈률이 늘어났던 점. 위자드 방식으로 단계를 분할했다면 완료율이 개선되었을 것.</div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-label">Key Insight</div>
+        <div class="lesson-text">보호소·입양자·관리자처럼 같은 데이터를 다르게 보는 UI에서는, 상태화 권한을 일찍 분리해야 복잡성이 줄어든다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 02: Z맘대로 -->
+<section id="z-mam" style="padding-top:0;">
+  <div class="project-section">
+    <div class="project-header">
+      <div>
+        <div class="project-number-label">Project 02 / 03 · 2026.02 → 2026.03</div>
+        <h2 class="project-title">Z맘대로</h2>
+        <p class="project-tagline">보고, 따라하고, 함께 투자하다. — Mobile PWA · MZ Finance</p>
+        <p class="project-tagline" style="color:var(--accent);font-weight:600;font-style:italic;">Scroll. Tap. Invest.</p>
+        <div class="project-meta">
+          <span>React · Spring Boot</span>
+          <span>팀 6인</span>
+          <span>기여: 와이어/프로토타입 50% · 주요 화면 구현 50% · API 명세·연동 50%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-title">Tech Stack</div>
+        <div class="stack-list">
+          <span class="stack-item">React 19</span>
+          <span class="stack-item">TypeScript 5.9</span>
+          <span class="stack-item">Vite 7</span>
+          <span class="stack-item">Zustand 5</span>
+          <span class="stack-item">Framer Motion</span>
+          <span class="stack-item">Lightweight Charts</span>
+          <span class="stack-item">STOMP-JS</span>
+          <span class="stack-item">PWA</span>
+          <span class="stack-item">FCM</span>
+          <span class="stack-item">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-title">핵심 기능 구현</div>
+        <div class="flow-steps">
+          <div class="flow-step"><span class="flow-step-icon">①</span><strong style="color:var(--text)">숏폼 피드</strong> — Y축 스냅 스크롤 + IntersectionObserver, 현재 영상만 활성 재생</div>
+          <div class="flow-step"><span class="flow-step-icon">②</span><strong style="color:var(--text)">AI 금융 분석 리포트</strong> — 6개 SSE 스트림 병렬 수신, 감성 색 코딩 차트</div>
+          <div class="flow-step"><span class="flow-step-icon">③</span><strong style="color:var(--text)">그룹 공동투자</strong> — STOMP WebSocket 실시간 동기화, FCM 리마인드 푸시</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <div class="detail-card-title" style="margin-bottom:0.75rem;">Problem &amp; Solved</div>
+      <div class="problem-grid">
+        <div class="problem-card problem">
+          <span class="problem-badge p">PROBLEM 01</span>
+          <div class="problem-title">숏폼 피드 메모리 폭증</div>
+          <div class="problem-desc">무한 스크롤에서 video 요소가 누적되며 디코딩 버퍼가 쌓여 평균 480MB, CPU 18%</div>
+          <div class="stat-big red">480MB</div>
+          <div style="font-size:0.72rem;color:var(--muted)">평균 메모리 (개선 전)</div>
+        </div>
+        <div class="problem-card solution">
+          <span class="problem-badge s">SOLVED</span>
+          <div class="problem-title">윈도잉 + Video Pool 재사용</div>
+          <div class="problem-desc">가시 영역 내 슬라이드만 렌더링, video 풀 3개 순환 재사용으로 디코딩 버퍼 누적 차단</div>
+          <div class="stat-big green">180MB</div>
+          <div style="font-size:0.72rem;color:var(--green)">-62.5% · CPU 18% → 1.5%</div>
+        </div>
+        <div class="problem-card problem">
+          <span class="problem-badge p">PROBLEM 02</span>
+          <div class="problem-title">그룹 투표 UI 반영 지연</div>
+          <div class="problem-desc">REST polling으로 그룹 투표 결과 조회 시 3~5초 UI 반영 지연, 실시간 경험 훼손</div>
+          <div class="stat-big red">3–5s</div>
+          <div style="font-size:0.72rem;color:var(--muted)">UI 반영 지연 (개선 전)</div>
+        </div>
+        <div class="problem-card solution">
+          <span class="problem-badge s">SOLVED</span>
+          <div class="problem-title">STOMP WebSocket + 낙관적 업데이트</div>
+          <div class="problem-desc">REST polling을 STOMP WebSocket 푸시로 전환, 낙관적 업데이트로 동시성 충돌 없이 즉각 반영</div>
+          <div class="stat-big green">&lt;300ms</div>
+          <div style="font-size:0.72rem;color:var(--green)">×10 개선</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics-grid" style="margin-top:1.5rem;">
+      <div class="metric-card">
+        <div class="metric-value green">-62.5%</div>
+        <div class="metric-label">숏폼 피드 평균 메모리</div>
+        <div class="metric-sub">480MB → 180MB</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value green">-16.5pt</div>
+        <div class="metric-label">CPU 점유율</div>
+        <div class="metric-sub">18% → 1.5%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value yellow">×10</div>
+        <div class="metric-label">그룹 투표 UI 반영 속도</div>
+        <div class="metric-sub">3-5s → 300ms 미만</div>
+      </div>
+      <div class="metric-card" style="grid-column:span 1;">
+        <div class="metric-value" style="font-size:1.1rem;color:var(--muted);line-height:1.5;">"렌더링 비용과 동기화 모델의 선택이 사용자 경험의 질을 결정한다."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 03: LUMEN -->
+<section id="lumen" style="padding-top:0;">
+  <div class="project-section">
+    <div class="project-header">
+      <div>
+        <div class="project-number-label">Project 03 / 03 · 2026.04 → 2026.05</div>
+        <h2 class="project-title">L U M E N</h2>
+        <p class="project-tagline">빛으로 길을 여는 시각장애인 안전 보행 보조 서비스.</p>
+        <div class="project-meta">
+          <span>Android · LiteRT · Kotlin</span>
+          <span>6명 팀 (Front 2, Back 2, AI 1, Infra 1)</span>
+          <span>Role: On-device AI Engineer</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architecture Flow -->
+    <div class="detail-card" style="margin-bottom:1.5rem;">
+      <div class="detail-card-title">On-device AI Architecture</div>
+      <div class="arch-flow">
+        <div class="arch-box">
+          <div class="arch-box-title">UVC Camera</div>
+          <div class="arch-box-sub">USB 외부 카메라</div>
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-box">
+          <div class="arch-box-title">Android App</div>
+          <div class="arch-box-sub">실시간 프레임 수집</div>
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-box" style="border-color:rgba(79,158,255,0.4);background:rgba(79,158,255,0.08);">
+          <div class="arch-box-title">LiteRT Engine</div>
+          <div class="arch-box-sub">온디바이스 · Network 0ms</div>
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-box">
+          <div class="arch-box-title">SegFormer + YOLO</div>
+          <div class="arch-box-sub">세그멘테이션 · 신호 감지</div>
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-box">
+          <div class="arch-box-title">Result Layer</div>
+          <div class="arch-box-sub">위험/방향 결과</div>
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-box" style="border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.08);">
+          <div class="arch-box-title">Wear OS Haptic</div>
+          <div class="arch-box-sub">햅틱 패턴 피드백</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-title">온디바이스 AI 추론</div>
+        <div class="flow-steps">
+          <div class="flow-step"><span class="flow-step-icon">⚡</span>LiteRT(TFLite)로 SegFormer + YOLO 모델을 디바이스 내 실행</div>
+          <div class="flow-step"><span class="flow-step-icon">⚡</span>네트워크 연결 없이 보행 가능 영역 실시간 세그멘테이션</div>
+          <div class="flow-step"><span class="flow-step-icon">⚡</span>Network Latency: 0ms</div>
+        </div>
+        <div class="detail-card-title" style="margin-top:1.25rem;">Wear OS 햅틱 연동</div>
+        <div class="flow-steps">
+          <div class="flow-step"><span class="flow-step-icon">〰</span>스마트워치에 방향·위험 신호를 햅틱 패턴으로 전달</div>
+          <div class="flow-step"><span class="flow-step-icon">〰</span>시각 피드백 제한 환경에서 다중 채널 UX 구현</div>
+          <div class="flow-step"><span class="flow-step-icon">👁</span>USB 외부 카메라 통합으로 시야각 확장</div>
+        </div>
+      </div>
+      <div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value green">0ms</div>
+            <div class="metric-label">네트워크 레이턴시</div>
+            <div class="metric-sub">온디바이스 추론으로 달성</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value yellow">2채널</div>
+            <div class="metric-label">멀티채널 피드백</div>
+            <div class="metric-sub">시각 + 촉각 (Wear OS 햅틱)</div>
+          </div>
+          <div class="metric-card" style="grid-column:span 2;">
+            <div class="metric-value" style="font-size:3rem;color:var(--accent)">∞</div>
+            <div class="metric-label">실시간 위험 감지</div>
+            <div class="metric-sub">Wear OS + Android 연동</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-grid" style="margin-top:1.5rem;">
+      <div class="lesson-card">
+        <div class="lesson-label">기술적 성과</div>
+        <div class="lesson-text">
+          SegFormer + YOLO 온디바이스 실행 — 네트워크 의존 제로<br>
+          UVC 외부 카메라 통합으로 시야각 확장<br>
+          LiteRT(TFLite) 기반 실시간 세그멘테이션 처리
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-label">회고</div>
+        <div class="lesson-text">AI 추론을 엣지 디바이스에 올리는 것은 단순한 포팅이 아니라, 모델 경량화·메모리 관리·스레드 설계를 함께 고려하는 시스템 엔지니어링임을 배웠습니다. 접근성이 UX의 핵심임을 직접 체감했습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="border-top:1px solid var(--border);text-align:center;">
+  <div class="section-label" style="text-align:center;">Thank You · Open to Collaborate</div>
+  <h2 class="contact-name">박정희</h2>
+  <p class="contact-role">[ FRONT-END &amp; AI ENGINEER ] · SSAFY 14기 · 2026 · Seoul</p>
+  <p style="font-size:1rem;color:var(--muted);margin-bottom:3rem;">함께 만들고 싶은 서비스가 있다면, 언제든지 연락주세요.</p>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-item-label">Phone</div>
+      <div class="contact-item-value">010-2240-7543</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">Email</div>
+      <div class="contact-item-value"><a href="mailto:nasle5533@naver.com">naskc5533@naver.com</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">GitHub</div>
+      <div class="contact-item-value"><a href="https://github.com/ParkJeonghHee" target="_blank">github.com/ParkJeonghHee</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>PARK JEONG-HEE · FRONT-END ENGINEER · SSAFY 14기</footer>
+
+</body>
+</html>
